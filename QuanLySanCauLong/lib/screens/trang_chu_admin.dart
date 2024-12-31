@@ -21,20 +21,20 @@ class TrangChuAdmin extends StatelessWidget {
           leading: isLargeScreen
               ? null
               : Container(
+            width: 40, // Giảm kích thước chiều rộng của hình tròn
+            height: 40, // Giảm kích thước chiều cao của hình tròn
             decoration: BoxDecoration(
               color: Colors.green, // Màu nền xanh lá cây
-              shape: BoxShape.circle,
+              shape: BoxShape.circle, // Định dạng hình tròn
             ),
-            child: SizedBox(
-              width: 40, // Đặt kích thước cố định cho nút
-              height: 40,
-              child: IconButton(
-                icon: const Icon(
-                  Icons.menu,
-                  color: Colors.white, // Icon màu trắng
-                ),
-                onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+            child: IconButton(
+              padding: EdgeInsets.zero, // Loại bỏ padding mặc định của IconButton
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white, // Icon màu trắng
+                size: 20, // Kích thước của icon
               ),
+              onPressed: () => _scaffoldKey.currentState?.openDrawer(),
             ),
           ),
           title: Padding(
@@ -43,9 +43,15 @@ class TrangChuAdmin extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Logo",
+                  "Admin",
                   style: TextStyle(
-                      color: Colors.green, fontWeight: FontWeight.bold),
+                      color: Colors.green, fontWeight: FontWeight.bold, fontSize: 26),
+                ),
+                const Icon(Icons.admin_panel_settings, size: 50, color: Colors.green),
+                const Text(
+                  "THN",
+                  style: TextStyle(
+                      color: Colors.green, fontWeight: FontWeight.bold, fontSize: 26),
                 ),
                 if (isLargeScreen) Expanded(child: _navBarItems())
               ],
@@ -60,8 +66,8 @@ class TrangChuAdmin extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: const SizedBox(
-                  width: 54, // Đặt kích thước cố định cho nút
-                  height: 54,
+                  width: 40, // Đặt kích thước cố định cho nút
+                  height: 40,
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
                     child: _ProfileIcon(),
