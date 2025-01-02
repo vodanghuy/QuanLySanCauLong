@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quan_ly_san_cau_long/screens/home_screen.dart';
 import 'package:quan_ly_san_cau_long/screens/login_screen.dart';
+import 'package:quan_ly_san_cau_long/screens/trang_chu_admin.dart';
 import 'package:quan_ly_san_cau_long/services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         '/login': (context) => LoginScreen(),
         '/home': (context) => HomeScreen(),
+        '/admin': (context) => TrangChuAdmin(),
       },
     );
   }

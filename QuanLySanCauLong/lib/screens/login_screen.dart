@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quan_ly_san_cau_long/screens/register_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
@@ -26,21 +27,30 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _isLoading = true;
     });
+    if(_formKey.currentState?.validate() ?? false)
+      {
+        try {
+          final user = await _authService.login(
+              _usernameController.text,
+              _passwordController.text,
+              context
+          );
 
-    try {
-      final user = await _authService.login(
-        _usernameController.text,
-        _passwordController.text,
-      );
-
-      if (user != null) {
-        Navigator.pushReplacementNamed(context, '/home');
+          if (user != null) {
+            Navigator.pushReplacementNamed(context, '/home');
+          }
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Đăng nhập thất bại')),
+          );
+        }
+        finally {
+          setState(() {
+            _isLoading = false;
+          });
+        }
       }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Đăng nhập thất bại: $e')),
-      );
-    } finally {
+    else {
       setState(() {
         _isLoading = false;
       });
@@ -167,6 +177,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
+                    ),
+                    _gap(),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => RegisterScreen()),
+                        );
+                      },
+                      child: Text('Chưa có tài khoản? Đăng ký'),
                     ),
                   ],
                 ),
