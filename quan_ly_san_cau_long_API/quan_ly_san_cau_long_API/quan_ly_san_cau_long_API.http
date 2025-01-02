@@ -1,0 +1,6 @@
+@quan_ly_san_cau_long_API_HostAddress = http://localhost:5106
+
+GET {{quan_ly_san_cau_long_API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
