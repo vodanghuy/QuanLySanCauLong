@@ -4,6 +4,9 @@
     {
         public int Id { get; set; }
         public DateTime NgayTao { get; set; }
+        public double TongTien { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
         public ICollection<PhieuDatSanGio> PhieuDatSanGios { get; set; }
     }
 }

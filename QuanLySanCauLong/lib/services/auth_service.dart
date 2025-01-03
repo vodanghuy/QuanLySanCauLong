@@ -5,7 +5,7 @@ import '../models/user.dart';
 import 'package:flutter/material.dart';
 
 class AuthService {
-  static const String baseUrl = 'https://localhost:7092/api/auth';
+  static const String baseUrl = 'https://10.0.2.2:5106/api/auth';
 
   Future<User?> login(String username, String password, BuildContext context) async {
     final response = await http.post(

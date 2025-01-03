@@ -39,6 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen>
 
     setState(() {
       _isLoading = true;
+      FocusScope.of(context).unfocus(); //Đóng bàn phím
     });
     if (_formKey.currentState?.validate() ?? false) {
       try {

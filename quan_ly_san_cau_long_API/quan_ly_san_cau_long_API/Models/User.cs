@@ -9,6 +9,7 @@ namespace quan_ly_san_cau_long_API.Models
         public string TenDangNhap { get; set; }
         public int RoleId { get; set; }
         public Role Role { get; set; }
+        public ICollection<PhieuDatSan> PhieuDatSans { get; set; }
         public UserInfo? UserInfo { get; set; }
     }
 }

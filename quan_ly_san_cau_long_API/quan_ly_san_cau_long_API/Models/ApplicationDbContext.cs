@@ -75,6 +75,19 @@ namespace quan_ly_san_cau_long_API.Models
                 .WithMany(e => e.Users)
                 .HasForeignKey(e => e.RoleId)
                 .IsRequired();
+
+            //PhieuDatSan - User
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.PhieuDatSans)
+                .WithOne(e => e.User)
+                .HasForeignKey(e => e.UserId)
+                    .IsRequired();
+
+            modelBuilder.Entity<PhieuDatSan>()
+                .HasOne(e => e.User)
+                .WithMany(e => e.PhieuDatSans)
+                .HasForeignKey(e => e.UserId)
+                .IsRequired();
         }
     }
 }
