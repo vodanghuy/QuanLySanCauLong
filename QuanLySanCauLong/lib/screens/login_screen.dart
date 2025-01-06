@@ -22,9 +22,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final AuthService _authService = AuthService();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _errorMessage;
+  bool _checkUsername = true;
+  bool _checkPassword = true;
+
 
   void _login() async {
     setState(() {
+  
       _isLoading = true;
       FocusScope.of(context).unfocus();
     });
@@ -92,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (value == null || value.isEmpty) {
                           return 'Tên đăng nhập không được để trống.';
                         }
+
                         return null;
                       },
                       decoration: const InputDecoration(
@@ -111,6 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (value.length < 6) {
                           return 'Mật khẩu phải từ 6 ký tự trở lên.';
                         }
+
                         return null;
                       },
                       obscureText: !_isPasswordVisible,

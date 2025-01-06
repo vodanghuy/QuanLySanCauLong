@@ -37,9 +37,6 @@ namespace quan_ly_san_cau_long_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("laCuoiTuan")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
                     b.ToTable("Gios");
@@ -69,27 +66,6 @@ namespace quan_ly_san_cau_long_API.Migrations
                     b.ToTable("PhieuDatSans");
                 });
 
-            modelBuilder.Entity("quan_ly_san_cau_long_API.Models.PhieuDatSanGio", b =>
-                {
-                    b.Property<int>("SanId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PhieuDatSanId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("NgayDat")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("SanId", "PhieuDatSanId");
-
-                    b.HasIndex("PhieuDatSanId");
-
-                    b.ToTable("PhieuDatSanGios");
-                });
-
             modelBuilder.Entity("quan_ly_san_cau_long_API.Models.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -115,8 +91,9 @@ namespace quan_ly_san_cau_long_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("TenSan")
-                        .HasColumnType("int");
+                    b.Property<string>("TenSan")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -129,9 +106,6 @@ namespace quan_ly_san_cau_long_API.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("GioId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("SanId", "GioId");
@@ -212,25 +186,6 @@ namespace quan_ly_san_cau_long_API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("quan_ly_san_cau_long_API.Models.PhieuDatSanGio", b =>
-                {
-                    b.HasOne("quan_ly_san_cau_long_API.Models.PhieuDatSan", "PhieuDatSan")
-                        .WithMany("PhieuDatSanGios")
-                        .HasForeignKey("PhieuDatSanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("quan_ly_san_cau_long_API.Models.San", "San")
-                        .WithMany("PhieuDatSanGios")
-                        .HasForeignKey("SanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PhieuDatSan");
-
-                    b.Navigation("San");
-                });
-
             modelBuilder.Entity("quan_ly_san_cau_long_API.Models.SanGio", b =>
                 {
                     b.HasOne("quan_ly_san_cau_long_API.Models.Gio", "Gio")
@@ -277,11 +232,6 @@ namespace quan_ly_san_cau_long_API.Migrations
                     b.Navigation("SanGios");
                 });
 
-            modelBuilder.Entity("quan_ly_san_cau_long_API.Models.PhieuDatSan", b =>
-                {
-                    b.Navigation("PhieuDatSanGios");
-                });
-
             modelBuilder.Entity("quan_ly_san_cau_long_API.Models.Role", b =>
                 {
                     b.Navigation("Users");
@@ -289,8 +239,6 @@ namespace quan_ly_san_cau_long_API.Migrations
 
             modelBuilder.Entity("quan_ly_san_cau_long_API.Models.San", b =>
                 {
-                    b.Navigation("PhieuDatSanGios");
-
                     b.Navigation("SanGios");
                 });
 

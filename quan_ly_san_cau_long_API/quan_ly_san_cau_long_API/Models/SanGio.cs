@@ -2,10 +2,10 @@
 {
     public class SanGio
     {
-        public int Id { get; set; }
-        public int SanId { get; set; }
-        public int GioId { get; set; }
-        public San San { get; set; }
-        public Gio Gio { get; set; }
+        public int SanId { get; set; } // ID của sân
+        public San San { get; set; } // Thông tin sân
+
+        public int GioId { get; set; } // ID của giờ
+        public Gio Gio { get; set; } // Thông tin giờ
     }
 }

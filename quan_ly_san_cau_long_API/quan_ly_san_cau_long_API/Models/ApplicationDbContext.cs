@@ -14,7 +14,6 @@ namespace quan_ly_san_cau_long_API.Models
         public DbSet<Gio> Gios { get; set; }
         public DbSet<PhieuDatSan> PhieuDatSans { get; set; }
         public DbSet<SanGio> SanGios { get; set; }
-        public DbSet<PhieuDatSanGio> PhieuDatSanGios { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -22,33 +21,21 @@ namespace quan_ly_san_cau_long_API.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            // Cấu hình San - Gio
+            // Mối quan hệ n-n giữa Sân và Giờ
             modelBuilder.Entity<SanGio>()
-            .HasKey(pt => new { pt.SanId, pt.GioId }); // Composite key
-
+                .HasKey(sg => new { sg.SanId, sg.GioId });
             modelBuilder.Entity<SanGio>()
-                .HasOne(pt => pt.San)
-                .WithMany(p => p.SanGios)
-                .HasForeignKey(pt => pt.SanId);
-
+                .HasOne(sg => sg.San)
+                .WithMany(s => s.SanGios)
+                .HasForeignKey(sg => sg.SanId);
             modelBuilder.Entity<SanGio>()
-                .HasOne(pt => pt.Gio)
-                .WithMany(t => t.SanGios)
-                .HasForeignKey(pt => pt.GioId);
+                .HasOne(sg => sg.Gio)
+                .WithMany(g => g.SanGios)
+                .HasForeignKey(sg => sg.GioId);
 
-            // Cấu hình PhieuDatSan - San
-            modelBuilder.Entity<PhieuDatSanGio>()
-            .HasKey(pt => new { pt.SanId, pt.PhieuDatSanId }); // Composite key
+           
 
-            modelBuilder.Entity<PhieuDatSanGio>()
-                .HasOne(pt => pt.San)
-                .WithMany(p => p.PhieuDatSanGios)
-                .HasForeignKey(pt => pt.SanId);
-
-            modelBuilder.Entity<PhieuDatSanGio>()
-                .HasOne(pt => pt.PhieuDatSan)
-                .WithMany(t => t.PhieuDatSanGios)
-                .HasForeignKey(pt => pt.PhieuDatSanId);
+           
 
             // User - UserInfo
             modelBuilder.Entity<User>()
@@ -88,6 +75,9 @@ namespace quan_ly_san_cau_long_API.Models
                 .WithMany(e => e.PhieuDatSans)
                 .HasForeignKey(e => e.UserId)
                 .IsRequired();
+
+           
         }
     }
+    
 }

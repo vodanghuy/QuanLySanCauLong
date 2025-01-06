@@ -132,6 +132,25 @@ namespace quan_ly_san_cau_long_API.Controllers
             }
             return true;
         }
+        [HttpPost]
+        [Route("checkuser")]
+        public async Task<string> CheckUser(String username, String password)
+        {
+            // Kiểm tra xem tên đăng nhập đã tồn tại chưa
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.TenDangNhap == username);
+            if (existingUser != null)
+            {
+                if(existingUser.MatKhau == HashPassword(password))
+                {
+                    return "Success";
+                }
+                else
+                {
+                    return "password is incorrect";
+                }    
+            }
+            return "username is not exist";
+        }
         private string HashPassword(string password)
         {
             // Sử dụng SHA256 để tạo hash cho mật khẩu

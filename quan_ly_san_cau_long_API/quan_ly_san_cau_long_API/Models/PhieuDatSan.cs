@@ -7,6 +7,6 @@
         public double TongTien { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
-        public ICollection<PhieuDatSanGio> PhieuDatSanGios { get; set; }
+       
     }
 }

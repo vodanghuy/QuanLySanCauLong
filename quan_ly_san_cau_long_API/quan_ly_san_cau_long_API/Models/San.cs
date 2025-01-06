@@ -3,8 +3,8 @@
     public class San
     {
         public int Id { get; set; }
-        public int TenSan { get; set; }
+        public string TenSan { get; set; }
         public ICollection<SanGio> SanGios { get; set; }
-        public ICollection<PhieuDatSanGio> PhieuDatSanGios { get; set; }
+
     }
 }

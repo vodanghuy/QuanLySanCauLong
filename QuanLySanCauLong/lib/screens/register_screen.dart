@@ -31,13 +31,14 @@ class _RegisterScreenState extends State<RegisterScreen>
   Future<void> _checkUsernameExistence(String username) async {
     bool isUsernameTaken = await _authService.checkUserName(username);
     setState(() {
-      _isUsernameValid = !isUsernameTaken;  // Cập nhật trạng thái hợp lệ của tên đăng nhập
+      _isUsernameValid = isUsernameTaken;  // Cập nhật trạng thái hợp lệ của tên đăng nhập
     });
   }
 
   void _register() async{
 
     setState(() {
+      _checkUsernameExistence(_usernameController.text);
       _isLoading = true;
       FocusScope.of(context).unfocus(); //Đóng bàn phím
     });

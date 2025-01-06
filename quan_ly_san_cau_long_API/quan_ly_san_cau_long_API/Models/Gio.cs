@@ -5,7 +5,8 @@
         public int Id { get; set; }
         public string ThoiGian { get; set; }
         public double DonGia { get; set; }
-        public bool laCuoiTuan { get; set; }
+        // Mối quan hệ n-n với Sân
         public ICollection<SanGio> SanGios { get; set; }
+
     }
 }

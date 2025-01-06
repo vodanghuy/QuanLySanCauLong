@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:quan_ly_san_cau_long/screens/danh_sach_san.dart';
 import 'package:quan_ly_san_cau_long/screens/home_screen.dart';
 import 'package:quan_ly_san_cau_long/screens/login_screen.dart';
 import 'package:quan_ly_san_cau_long/screens/trang_chu_admin.dart';
 import 'package:quan_ly_san_cau_long/services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:quan_ly_san_cau_long/screens/trang_chu_user.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,14 +27,14 @@ class MyApp extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             } else if (snapshot.data == true) {
-              return HomeScreen();
+              return TrangChuUser();
             } else {
               return LoginScreen();
             }
           },
         ),
         '/login': (context) => LoginScreen(),
-        '/home': (context) => HomeScreen(),
+        '/home': (context) => TrangChuUser(),
         '/admin': (context) => TrangChuAdmin(),
       },
     );
